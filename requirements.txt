@@ -1,0 +1,17 @@
+# Análisis de datos
+pandas==3.0.6
+numpy==2.5.3
+
+# Visualización
+matplotlib==3.11.2
+seaborn==0.13.2
+plotly==7.1.0
+nbformat==5.11.1
+
+# Para correr el notebook en VS Code o Jupyter
+ipykernel==7.4.0
+
+# Calidad de código (Tema 2)
+black==26.10.0
+flake8==7.4.1
+pylint==4.1.2
