@@ -1,0 +1,144 @@
+PROYECTO FINAL A — BANCO RÍO DE LA PLATA
+Perfiles de cartera y riesgo de crédito
+Programación Analítica II — Universidad de Montevideo
+
+===============================================================================
+CONTEXTO
+===============================================================================
+
+El Banco Río de la Plata es un banco minorista uruguayo con presencia en todo el
+país. Su unidad de crédito al consumo coloca tarjetas, préstamos personales,
+adelantos de sueldo, líneas de crédito, préstamos automotores y créditos
+hipotecarios.
+
+La Gerencia de Riesgos contrató a su grupo como consultores externos. El planteo
+que les hicieron fue así:
+
+    "Sabemos cuánto prestamos y sabemos cuánto nos deben. Lo que no sabemos es a
+    quién le estamos prestando. Necesitamos que nos describan la cartera: qué
+    perfiles de cliente tenemos, cuáles se atrasan y por qué. Y necesitamos saber
+    si la cartera está mejorando o empeorando, porque el tablero que nos manda
+    Sistemas dice que venimos mejorando hace dos años y al Directorio eso ya no
+    le cierra."
+
+Les entregan tres archivos que salieron del sistema el 30 de junio de 2026.
+Nadie los revisó. Contienen problemas de calidad que no están documentados:
+encontrarlos es parte del trabajo.
+
+Fecha de corte de los datos: 30 de junio de 2026.
+Período de originación: enero de 2023 a marzo de 2026.
+
+===============================================================================
+ARCHIVO 1 — clientes.csv
+===============================================================================
+
+Una fila por cliente. Datos declarados al momento del alta y score de buró.
+
+id_cliente                 Identificador del cliente.
+fecha_alta_cliente         Fecha en que la persona se hizo cliente del banco.
+edad                       Edad declarada, en años.
+sexo                       F o M.
+estado_civil               Soltero/a, Casado/a, Unión libre, Divorciado/a,
+                           Viudo/a.
+cantidad_dependientes      Personas a cargo declaradas.
+departamento               Departamento de residencia.
+nivel_educativo            Máximo nivel educativo alcanzado.
+sector_empleo              Público, Privado, Independiente, Jubilado o Informal.
+antiguedad_laboral_meses   Meses en el empleo actual.
+situacion_vivienda         Propia, Propia con hipoteca, Alquilada o Familiar.
+ingreso_mensual            Ingreso líquido mensual declarado, en pesos
+                           uruguayos. Es el dato que el cliente declara y que el
+                           banco no siempre verifica.
+score_clearing             Puntaje del Clearing de Informes al momento del alta.
+                           Escala de 300 a 950: más alto es mejor.
+canal_originacion          Por dónde entró el cliente: Sucursal, Web, App,
+                           Comercio adherido o Telemarketing. "Comercio adherido"
+                           son las financiaciones que se otorgan en el local de
+                           un comercio asociado, en el punto de venta.
+segmento_comercial         Clasificación comercial interna: Masivo, Preferente o
+                           Premium.
+tiene_cuenta_sueldo        Si el sueldo se acredita en el banco.
+
+===============================================================================
+ARCHIVO 2 — productos.csv
+===============================================================================
+
+Una fila por producto de crédito. Un cliente puede tener varios.
+
+id_producto                Identificador del producto.
+id_cliente                 Clave para unir con clientes.csv.
+tipo_producto              Tarjeta de crédito, Préstamo al consumo, Adelanto de
+                           sueldo, Préstamo automotor, Crédito hipotecario o
+                           Línea de crédito.
+moneda                     Moneda del contrato: UYU (pesos), USD (dólares) o
+                           UI (unidades indexadas).
+fecha_alta_producto        Fecha de otorgamiento.
+plazo_meses                Cantidad de cuotas pactadas.
+tasa_nominal_anual         Tasa nominal anual del contrato.
+monto_otorgado             Monto otorgado, EN LA MONEDA DEL CONTRATO.
+cuota_mensual              Cuota mensual, EN LA MONEDA DEL CONTRATO.
+limite_credito             Límite asignado al producto, cuando corresponde.
+saldo_actual               Saldo adeudado a la fecha de corte.
+saldo_maximo_historico     Máximo saldo alcanzado en la vida del producto.
+cuotas_pagas_en_termino    Cantidad de cuotas que se pagaron sin atraso.
+veces_atraso_leve          Veces que el producto entró en atraso de hasta
+                           30 días.
+veces_atraso_medio         Veces que llegó a un atraso de entre 31 y 60 días.
+veces_atraso_grave         Veces que llegó a un atraso de más de 60 días.
+dias_atraso_acumulados     Suma de días en situación de atraso a lo largo de la
+                           vida del producto.
+fecha_ultima_actualizacion Última actualización del registro en el sistema.
+fecha_ultimo_reporte       Fecha del último reporte al Clearing.
+
+===============================================================================
+ARCHIVO 3 — tipo_cambio_mensual.csv
+===============================================================================
+
+mes                        Mes, en formato AAAA-MM.
+tipo_cambio_usd            Pesos uruguayos por dólar, promedio del mes.
+valor_unidad_indexada      Pesos uruguayos por unidad indexada, promedio del mes.
+
+===============================================================================
+OBJETIVO
+===============================================================================
+
+Producir un diagnóstico de la cartera de crédito al consumo que le permita a la
+Gerencia de Riesgos responder tres preguntas:
+
+1. ¿QUIÉNES SON NUESTROS CLIENTES?
+   Describir la cartera con perfiles de cliente construidos a partir de los
+   datos, no a partir del segmento comercial que ya trae el archivo.
+
+2. ¿QUÉ ANTICIPA EL ATRASO?
+   Identificar qué variables separan a los clientes que se atrasan de los que
+   no. La variable que más explica el atraso NO está en los archivos: hay que
+   construirla.
+
+3. ¿LA CARTERA ESTÁ MEJORANDO O EMPEORANDO?
+   Esta es la pregunta que trajo el Directorio y es la más difícil de las tres.
+   El tablero de Sistemas dice que la mora viene bajando desde 2024. Verificar
+   esa afirmación es el corazón del trabajo.
+
+El entregable final es una presentación ejecutiva al Comité de Riesgos con una
+recomendación de política de crédito: a quién seguir prestando, a quién no, y
+bajo qué condiciones.
+
+No hay una respuesta correcta única. Lo que se evalúa es el procedimiento, la
+justificación de cada decisión y la honestidad sobre lo que los datos no
+permiten concluir.
+
+===============================================================================
+ADVERTENCIA
+===============================================================================
+
+Los archivos salieron del sistema sin revisión previa. Tienen datos faltantes,
+duplicados, inconsistencias, valores imposibles, categorías escritas de varias
+maneras y al menos una columna donde conviven dos unidades de medida. Nada de
+eso está documentado acá a propósito.
+
+Antes de sacar conclusiones, audítenlos.
+
+===============================================================================
+Datos sintéticos generados para uso docente. Cualquier parecido con una
+institución financiera real es coincidencia.
+Adaptado de: kaggle.com/datasets/praveengovi/credit-risk-classification-dataset
