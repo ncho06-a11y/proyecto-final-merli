@@ -1,6 +1,6 @@
 # ---------------------------------------------------------------
 # .gitignore del proyecto final - Programación Analítica II
-# Basado en el del Tema 8 (Git y GitHub).
+# Basado en el del Tema 12 (Git y GitHub).
 # ---------------------------------------------------------------
 
 # Entorno virtual: se reconstruye con pip install -r requirements.txt
@@ -15,7 +15,7 @@ __pycache__/
 # Copias de respaldo de Jupyter
 .ipynb_checkpoints/
 
-# Datos: a diferencia del Tema 8, los CSV de datos/ SÍ se suben.
+# Datos: a diferencia del Tema 12, los CSV de datos/ SÍ se suben.
 # La consigna dice que el notebook "se corrige ejecutándolo", así que la
 # docente necesita los archivos para correrlo. Son datos sintéticos de uso
 # docente (ver datos/Info.txt) y pesan poco.
@@ -28,7 +28,7 @@ credenciales*
 token*
 
 # Salidas: los gráficos de salidas/ SÍ se suben, porque son parte del
-# informe (Tema 8: "si el gráfico es parte del informe, ese sí puede ir").
+# informe (Tema 12: "si el gráfico es parte del informe, ese sí puede ir").
 *.log
 
 # Basura del sistema operativo y de los editores
