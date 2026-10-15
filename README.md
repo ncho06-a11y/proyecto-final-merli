@@ -3,7 +3,7 @@
 Proyecto final de **Programación Analítica II** (Universidad de Montevideo, S2 2026,
 docente Camila Palomeque). Propuesta A.
 
-Autor: NOMBRE Merli.
+Autor: Ignacio Merli.
 
 ## Qué hace el proyecto
 
