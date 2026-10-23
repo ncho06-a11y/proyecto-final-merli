@@ -35,10 +35,7 @@ proyecto-final-merli/
 └── salidas/             gráficos que genera el notebook
     ├── mora_por_trimestre.png              3.3 la cartera empeora desde 2025T3
     ├── mora_por_ratio_cuota_ingreso.png    4.1 ratio cuota / ingreso contra atraso
-    ├── distribucion_monto_otorgado.png     4.2 promedio contra mediana del monto
-    ├── mora_por_sector.png                 4.3 mora por sector, ordenada
-    ├── efecto_composicion_canal.html       4.4 efecto de composición (Plotly, interactivo)
-    └── mapa_de_calor_correlaciones.png     4.5 correlaciones de Spearman
+    └── efecto_composicion_canal.html       4.2 efecto de composición (Plotly, interactivo)
 ```
 
 El notebook está ordenado según las cinco etapas de la consigna: 1. EDA y calidad de
